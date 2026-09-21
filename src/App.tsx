@@ -12,7 +12,7 @@ export default function App() {
       <ScrollProgress />
       <Hero />
 
-      <main style={{ maxWidth: 720, margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 1 }}>
+      <main style={{ maxWidth: 960, margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 1 }}>
         <SocialLinks />
         <ExperienceSection />
         <ProjectsSection />

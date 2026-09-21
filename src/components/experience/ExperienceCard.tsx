@@ -1,51 +1,64 @@
-import { useState } from 'react';
-import { FONT_HEADING, V, V_DIM } from '@/theme';
 import type { Experience } from '@/types';
 
 export function ExperienceCard({ experience }: { experience: Experience }) {
-  const [hovered, setHovered] = useState(false);
+  const current = experience.dates.includes('Present');
+
   return (
-    <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr auto',
-        gap: '0 24px',
-        backgroundColor: '#111',
-        border: `1px solid ${hovered ? 'rgba(139,92,246,0.3)' : '#1e1e1e'}`,
-        borderRadius: 14,
-        padding: '24px 28px',
-        transition: 'border-color 0.2s, box-shadow 0.2s',
-        boxShadow: hovered ? '0 8px 32px rgba(0,0,0,0.4)' : 'none',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
-      {/* left accent bar */}
-      <div style={{
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        bottom: 0,
-        width: 3,
-        background: hovered ? `linear-gradient(to bottom, ${V}, ${V_DIM})` : 'transparent',
-        borderRadius: '14px 0 0 14px',
-        transition: 'background 0.2s',
-      }} />
-      <div>
-        <h3 style={{ margin: '0 0 4px', fontSize: 17, fontWeight: 600, color: '#f0f0ee', letterSpacing: '-0.01em', fontFamily: FONT_HEADING }}>{experience.title}</h3>
-        <p style={{ margin: '0 0 14px', fontSize: 13, fontWeight: 500, color: V }}>{experience.company}</p>
-        <p style={{ margin: 0, fontSize: 13.5, lineHeight: 1.7, color: '#7a7a78' }}>{experience.description}</p>
+    <li className="group relative grid grid-cols-[32px_1fr] gap-x-5 pb-10 last:pb-0 md:grid-cols-[32px_150px_1fr] md:gap-x-8 md:pb-14">
+      {/* Timeline node — lit up by ScrollTrigger via `.is-active` */}
+      <div className="relative z-10 row-span-2 flex h-8 w-8 items-center justify-center md:row-span-1">
+        <span className="absolute inset-0 rounded-full border border-white/10 bg-[#080808] transition-colors duration-500 group-[.is-active]:border-accent/60" />
+        <span className="relative h-2 w-2 rounded-full bg-white/20 transition-all duration-500 group-[.is-active]:scale-125 group-[.is-active]:bg-accent group-[.is-active]:shadow-[0_0_14px_3px_rgba(139,92,246,0.6)]" />
       </div>
-      <span style={{
-        fontSize: 12,
-        color: '#4a4a48',
-        fontWeight: 500,
-        whiteSpace: 'nowrap',
-        paddingTop: 2,
-        letterSpacing: '0.01em',
-      }}>{experience.dates}</span>
-    </div>
+
+      {/* Dates */}
+      <div data-reveal className="flex items-center gap-2 pb-3 font-mono text-xs uppercase tracking-wider text-white/40 md:flex-col md:items-start md:pt-2">
+        <span>{experience.dates}</span>
+        {current && (
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2 py-0.5 text-[10px] text-emerald-300">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+            Now
+          </span>
+        )}
+      </div>
+
+      {/* Card */}
+      <article
+        data-reveal
+        className="col-start-2 rounded-2xl border border-white/[0.06] bg-surface/70 p-6 transition-colors duration-300 hover:border-accent/30 hover:bg-surface md:col-start-3 md:row-start-1 md:p-7"
+      >
+        <header className="flex items-center gap-4">
+          <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-linear-to-br from-accent to-indigo-500 font-display text-lg font-bold text-white shadow-[0_6px_20px_rgba(139,92,246,0.35)]">
+            {experience.company[0]}
+          </div>
+          <div>
+            <h3 className="font-display text-[17px] font-semibold tracking-tight text-ink">{experience.title}</h3>
+            <p className="text-sm font-medium text-accent-soft">{experience.company}</p>
+          </div>
+        </header>
+
+        <p className="mt-5 text-[14.5px] leading-relaxed text-muted">{experience.description}</p>
+
+        <dl className="mt-6 grid grid-cols-2 gap-3">
+          {experience.metrics.map(metric => (
+            <div key={metric.label} className="rounded-xl border border-white/5 bg-white/[0.02] px-4 py-3">
+              <dt className="sr-only">{metric.label}</dt>
+              <dd data-count className="bg-linear-to-br from-white to-accent-soft bg-clip-text font-display text-2xl font-bold tracking-tight text-transparent">
+                {metric.value}
+              </dd>
+              <dd className="mt-0.5 text-xs text-muted">{metric.label}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <ul className="mt-5 flex flex-wrap gap-2">
+          {experience.stack.map(item => (
+            <li key={item} className="rounded-md border border-white/10 px-2 py-1 font-mono text-[11px] text-white/50">
+              {item}
+            </li>
+          ))}
+        </ul>
+      </article>
+    </li>
   );
 }

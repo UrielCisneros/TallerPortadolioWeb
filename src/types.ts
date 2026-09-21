@@ -1,10 +1,17 @@
 import type { ComponentType } from 'react';
 
+export interface Metric {
+  value: string;
+  label: string;
+}
+
 export interface Experience {
   title: string;
   company: string;
   dates: string;
   description: string;
+  metrics: Metric[];
+  stack: string[];
 }
 
 export interface Project {
@@ -12,9 +19,9 @@ export interface Project {
   subtitle: string;
   description: string;
   tags: string[];
-  hue: string;
   from: string;
   to: string;
+  href?: string;
 }
 
 export interface Social {
