@@ -1,7 +1,8 @@
 import { HeroCorners, ScrollHero, ScrollIndicator } from '@/components/hero';
 import { MailIcon } from '@/components/icons';
 import { Avatar, Button, StatusPill } from '@/components/ui';
-import { navSections } from '@/data/navigation';
+import { heroCopy, projectsCopy } from '@/data/copy';
+import { HOME_ID, navSections } from '@/data/navigation';
 import { profile } from '@/data/profile';
 import { linkProps } from '@/lib/links';
 
@@ -13,7 +14,7 @@ export function HeroSection() {
           <span className="grid h-7 w-7 place-items-center rounded-full border border-white/20 font-display text-xs font-bold text-white">
             {profile.initial}
           </span>
-          <span>Portfolio — ©2026</span>
+          <span>{heroCopy.brand}</span>
         </div>
       }
       topRight={
@@ -29,12 +30,12 @@ export function HeroSection() {
           <p>{profile.focus}</p>
         </>
       }
-      bottomRight={<ScrollIndicator label="Scroll to explore" />}
+      bottomRight={<ScrollIndicator label={heroCopy.scrollLabel} />}
     />
   );
 
   return (
-    <ScrollHero id="top" title={profile.name} image={profile.heroImage} corners={corners}>
+    <ScrollHero id={HOME_ID} title={profile.name} image={profile.heroImage} corners={corners}>
       <Avatar initial={profile.initial} className="mb-7" />
       <StatusPill>{profile.status}</StatusPill>
 
@@ -49,8 +50,8 @@ export function HeroSection() {
       <p className="mt-6 max-w-lg text-base leading-relaxed text-white/65">{profile.bio}</p>
 
       <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-        <Button href={`mailto:${profile.email}`} icon={<MailIcon size={16} />}>Contact Me</Button>
-        <Button href="#projects" variant="ghost" iconEnd="↓">View work</Button>
+        <Button href={`mailto:${profile.email}`} icon={<MailIcon size={16} />}>{heroCopy.contactLabel}</Button>
+        <Button href={`#${projectsCopy.id}`} variant="ghost" iconEnd="↓">{heroCopy.workLabel}</Button>
       </div>
     </ScrollHero>
   );

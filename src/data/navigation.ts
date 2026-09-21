@@ -1,9 +1,13 @@
 import { BriefcaseIcon, GridIcon, HomeIcon } from '@/components/icons';
 import type { NavItem } from '@/types';
+import { experienceCopy, projectsCopy } from './copy';
 
-/** In-page sections. Each href must match a section's `id` ("#projects" → id="projects"). */
+/** id del hero; lo usan el hero y el botón "Inicio". */
+export const HOME_ID = 'inicio';
+
+/** Secciones de la página. Cada href apunta al id de una sección ("#proyectos" → id="proyectos"). */
 export const navSections: NavItem[] = [
-  { label: 'Home', href: '#top', icon: HomeIcon },
-  { label: 'Experience', href: '#experience', icon: BriefcaseIcon },
-  { label: 'Projects', href: '#projects', icon: GridIcon },
+  { label: 'Inicio', href: `#${HOME_ID}`, icon: HomeIcon },
+  { label: experienceCopy.eyebrow, href: `#${experienceCopy.id}`, icon: BriefcaseIcon },
+  { label: projectsCopy.eyebrow, href: `#${projectsCopy.id}`, icon: GridIcon },
 ];

@@ -1,0 +1,79 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   TEMA DEL SITIO
+   Todos los colores, sombras y fuentes viven aquí. Cambia un valor y se
+   actualiza en toda la página.
+
+   Cada token se convierte en clases de Tailwind:
+     --color-accent  →  text-accent, bg-accent, border-accent/30, from-accent…
+     --shadow-glow   →  shadow-glow
+     --font-display  →  font-display
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@theme {
+  /* ── Color de acento ────────────────────────────────────────────────
+     La "marca" del sitio: botones, enlaces, brillos, línea de tiempo.
+     Para cambiar toda la paleta, basta con reemplazar estos 5 valores. */
+  --color-accent: #8b5cf6;       /* principal */
+  --color-accent-dim: #6d28d9;   /* versión oscura (degradados) */
+  --color-accent-soft: #c4b5fd;  /* versión clara (textos sobre fondo oscuro) */
+  --color-accent-2: #6366f1;     /* segundo color de los degradados */
+  --color-accent-3: #3b82f6;     /* tercer color (avatar) */
+
+  /* ── Fondos ───────────────────────────────────────────────────────── */
+  --color-canvas: #080808;          /* fondo de la página */
+  --color-surface: #0e0e10;         /* tarjetas */
+  --color-surface-raised: #111111;  /* botones de ícono */
+
+  /* ── Texto ────────────────────────────────────────────────────────── */
+  --color-ink: #f0f0ee;     /* texto principal */
+  --color-muted: #7a7a78;   /* párrafos secundarios */
+  --color-subtle: #5a5a58;  /* íconos en reposo */
+  --color-faint: #3a3a38;   /* texto muy discreto (footer) */
+
+  /* ── Bordes ───────────────────────────────────────────────────────── */
+  --color-line: #1e1e1e;
+
+  /* ── Estados ──────────────────────────────────────────────────────── */
+  --color-success: #4ade80; /* "Disponible", trabajo actual */
+
+  /* ── Sombras y brillos (derivados del acento, no hace falta tocarlos) ── */
+  --shadow-glow-sm: 0 0 8px 2px color-mix(in oklab, var(--color-accent) 70%, transparent);
+  --shadow-glow: 0 0 12px color-mix(in oklab, var(--color-accent) 60%, transparent);
+  --shadow-glow-lg: 0 0 14px 3px color-mix(in oklab, var(--color-accent) 60%, transparent);
+  --shadow-accent-sm: 0 6px 20px color-mix(in oklab, var(--color-accent) 35%, transparent);
+  --shadow-accent: 0 4px 24px color-mix(in oklab, var(--color-accent) 50%, transparent);
+  --shadow-accent-lg: 0 10px 36px color-mix(in oklab, var(--color-accent) 65%, transparent);
+  --shadow-success: 0 0 8px color-mix(in oklab, var(--color-success) 90%, transparent);
+  --shadow-avatar:
+    0 0 0 3px color-mix(in oklab, var(--color-canvas) 60%, transparent),
+    0 0 0 5px color-mix(in oklab, var(--color-accent) 50%, transparent),
+    0 12px 40px color-mix(in oklab, var(--color-accent) 40%, transparent);
+
+  /* ── Tipografía ─────────────────────────────────────────────────────
+     Si cambias una fuente, actualiza también el @import de Google Fonts
+     al inicio de src/index.css. */
+  --font-sans: 'Inter', system-ui, sans-serif;           /* texto */
+  --font-display: 'Sora', sans-serif;                    /* títulos */
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace; /* etiquetas, fechas */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PALETAS DE ACENTO LISTAS PARA USAR
+   Copia un bloque y reemplaza los 5 valores de "Color de acento" de arriba.
+
+   Esmeralda
+     --color-accent: #10b981;  --color-accent-dim: #047857;  --color-accent-soft: #6ee7b7;
+     --color-accent-2: #14b8a6;  --color-accent-3: #06b6d4;
+
+   Océano
+     --color-accent: #0ea5e9;  --color-accent-dim: #0369a1;  --color-accent-soft: #7dd3fc;
+     --color-accent-2: #3b82f6;  --color-accent-3: #6366f1;
+
+   Atardecer
+     --color-accent: #f97316;  --color-accent-dim: #c2410c;  --color-accent-soft: #fdba74;
+     --color-accent-2: #ef4444;  --color-accent-3: #ec4899;
+
+   Rosa
+     --color-accent: #ec4899;  --color-accent-dim: #be185d;  --color-accent-soft: #f9a8d4;
+     --color-accent-2: #a855f7;  --color-accent-3: #8b5cf6;
+   ═══════════════════════════════════════════════════════════════════════ */

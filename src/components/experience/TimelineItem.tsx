@@ -16,7 +16,7 @@ export function TimelineItem({ aside, children }: TimelineItemProps) {
       {/* Node — `.is-active` is toggled by the Timeline's ScrollTrigger */}
       <div className="relative z-10 row-span-2 flex h-8 w-8 items-center justify-center md:row-span-1">
         <span className="absolute inset-0 rounded-full border border-white/10 bg-canvas transition-colors duration-500 group-[.is-active]:border-accent/60 motion-reduce:border-accent/60" />
-        <span className="relative h-2 w-2 rounded-full bg-white/20 transition-all duration-500 group-[.is-active]:scale-125 group-[.is-active]:bg-accent group-[.is-active]:shadow-[0_0_14px_3px_rgba(139,92,246,0.6)] motion-reduce:bg-accent" />
+        <span className="relative h-2 w-2 rounded-full bg-white/20 transition-all duration-500 group-[.is-active]:scale-125 group-[.is-active]:bg-accent group-[.is-active]:shadow-glow-lg motion-reduce:bg-accent" />
       </div>
 
       <div data-timeline-reveal className="pb-3 md:pt-2">{aside}</div>

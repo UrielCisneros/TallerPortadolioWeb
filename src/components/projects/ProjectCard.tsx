@@ -10,10 +10,12 @@ interface ProjectCardProps {
   index: number;
   /** Wide layout with the visual beside the text. */
   featured?: boolean;
+  /** Badge text on the featured card. */
+  featuredLabel?: string;
   className?: string;
 }
 
-export function ProjectCard({ project, index, featured, className }: ProjectCardProps) {
+export function ProjectCard({ project, index, featured, featuredLabel = 'Destacado', className }: ProjectCardProps) {
   return (
     <SpotlightCard
       href={project.href ?? '#'}
@@ -28,7 +30,7 @@ export function ProjectCard({ project, index, featured, className }: ProjectCard
       <div className={cn('relative z-10 flex flex-1 flex-col p-6', featured ? 'md:justify-center md:p-10' : 'md:p-7')}>
         {featured && (
           <span className="mb-4 w-fit rounded-full border border-accent/30 bg-accent/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-accent-soft">
-            Featured
+            {featuredLabel}
           </span>
         )}
 

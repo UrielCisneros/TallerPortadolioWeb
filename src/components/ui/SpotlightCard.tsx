@@ -5,7 +5,7 @@ import { linkProps } from '@/lib/links';
 interface SpotlightCardProps {
   /** If set, the whole card is a link. */
   href?: string;
-  /** Glow color that follows the cursor. */
+  /** Glow color that follows the cursor. Default: the theme accent at 12%. */
   color?: string;
   className?: string;
   children: ReactNode;
@@ -21,7 +21,7 @@ function trackPointer(e: MouseEvent<HTMLElement>) {
  * Card with a soft glow that follows the mouse. It's a Tailwind `group`,
  * so children can react with `group-hover:*`.
  */
-export function SpotlightCard({ href, color = 'rgba(139,92,246,0.12)', className, children }: SpotlightCardProps) {
+export function SpotlightCard({ href, color = 'color-mix(in oklab, var(--color-accent) 12%, transparent)', className, children }: SpotlightCardProps) {
   const classes = cn('group relative isolate overflow-hidden', className);
   const content = (
     <>

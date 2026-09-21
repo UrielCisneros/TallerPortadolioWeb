@@ -1,5 +1,6 @@
 import { ProjectGrid } from '@/components/projects';
 import { Button, Section } from '@/components/ui';
+import { projectsCopy as copy } from '@/data/copy';
 import { projects } from '@/data/projects';
 import { socials } from '@/data/socials';
 
@@ -8,17 +9,17 @@ const githubUrl = socials.find(s => s.label === 'GitHub')?.href;
 export function ProjectsSection() {
   return (
     <Section
-      id="projects"
-      index="02"
-      eyebrow="Selected work"
-      title={<>Things I've built <span className="text-white/35">on my own time.</span></>}
-      description="Side projects and open-source tools — mostly born from scratching my own itch."
+      id={copy.id}
+      index={copy.index}
+      eyebrow={copy.eyebrow}
+      title={<>{copy.title} <span className="text-white/35">{copy.titleMuted}</span></>}
+      description={copy.description}
     >
       <ProjectGrid projects={projects} />
 
       {githubUrl && (
         <div className="mt-10 flex justify-center">
-          <Button href={githubUrl} variant="ghost" iconEnd="→" className="rounded-full">More on GitHub</Button>
+          <Button href={githubUrl} variant="ghost" iconEnd="→" className="rounded-full">{copy.moreLabel}</Button>
         </div>
       )}
     </Section>

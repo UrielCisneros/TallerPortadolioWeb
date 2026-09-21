@@ -10,7 +10,7 @@ export function Footer({ left, right }: { left: ReactNode; right?: ReactNode }) 
       stagger={0.1}
       duration={0.6}
       start="top 95%"
-      className="flex flex-wrap items-center justify-between gap-2 border-t border-[#1a1a1a] py-7 text-[12.5px] text-[#3a3a38]"
+      className="flex flex-wrap items-center justify-between gap-2 border-t border-line py-7 text-[12.5px] text-faint"
     >
       <p>{left}</p>
       {right && <p>{right}</p>}

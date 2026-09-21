@@ -35,7 +35,7 @@ export function Timeline({ className, children }: { className?: string; children
       <div className="absolute bottom-4 left-4 top-4 w-px -translate-x-1/2 bg-white/[0.07]" />
       <div
         data-timeline-progress
-        className="absolute bottom-4 left-4 top-4 w-px origin-top -translate-x-1/2 bg-linear-to-b from-accent via-accent to-indigo-500 shadow-[0_0_10px_rgba(139,92,246,0.6)]"
+        className="absolute bottom-4 left-4 top-4 w-px origin-top -translate-x-1/2 bg-linear-to-b from-accent via-accent to-accent-2 shadow-glow"
       />
       <ol>{children}</ol>
     </div>

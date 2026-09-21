@@ -22,7 +22,7 @@ export function ScrollProgress({ className }: { className?: string }) {
       // Inline transform (not a Tailwind scale class) so GSAP's scaleX isn't multiplied by 0
       style={{ transform: 'scaleX(0)' }}
       className={cn(
-        'fixed inset-x-0 top-0 z-50 h-[3px] origin-left bg-linear-to-r from-accent-dim via-accent to-indigo-500 shadow-[0_0_12px_rgba(139,92,246,0.6)] motion-reduce:hidden',
+        'fixed inset-x-0 top-0 z-50 h-[3px] origin-left bg-linear-to-r from-accent-dim via-accent to-accent-2 shadow-glow motion-reduce:hidden',
         className,
       )}
     />

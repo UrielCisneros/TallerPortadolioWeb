@@ -2,6 +2,7 @@ import { Footer } from '@/components/layout';
 import { ScrollProgress } from '@/components/motion';
 import { Dock, SocialLinks } from '@/components/navigation';
 import { Container } from '@/components/ui';
+import { footerCopy } from '@/data/copy';
 import { navSections } from '@/data/navigation';
 import { profile } from '@/data/profile';
 import { socials } from '@/data/socials';
@@ -17,7 +18,7 @@ export default function App() {
         <SocialLinks items={socials} className="mb-20 pt-16" />
         <ExperienceSection />
         <ProjectsSection />
-        <Footer left={`© 2026 ${profile.name}`} right="Built with React & Vite" />
+        <Footer left={`© 2026 ${profile.name}`} right={footerCopy.credits} />
       </Container>
 
       {/* Rendered last so its ScrollTriggers see the hero's pin spacing */}

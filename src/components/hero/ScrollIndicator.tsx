@@ -3,7 +3,7 @@ import { useMotion } from '@/hooks/useMotion';
 import { gsap } from '@/lib/gsap';
 
 /** Little mouse icon with a looping wheel, plus an optional label. */
-export function ScrollIndicator({ label = 'Scroll' }: { label?: string }) {
+export function ScrollIndicator({ label = 'Desliza' }: { label?: string }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useMotion(() => {

@@ -20,6 +20,8 @@ interface DockProps {
   range?: number;
   /** Seconds to wait before sliding in (e.g. to let a hero intro play first). */
   enterDelay?: number;
+  /** Accessible name of the <nav>. */
+  label?: string;
   className?: string;
 }
 
@@ -30,7 +32,7 @@ interface DockProps {
  *
  *   <Dock groups={[navSections, socials]} position="right" />
  */
-export function Dock({ groups, position = 'right', baseSize = 40, maxSize = 64, range = 140, enterDelay = 0, className }: DockProps) {
+export function Dock({ groups, position = 'right', baseSize = 40, maxSize = 64, range = 140, enterDelay = 0, label = 'Navegación del sitio', className }: DockProps) {
   const layout = DOCK_POSITIONS[position];
   const { ref, onMouseMove, onMouseLeave } = useMagnify<HTMLElement>({ base: baseSize, max: maxSize, range, axis: layout.axis });
 
@@ -46,7 +48,7 @@ export function Dock({ groups, position = 'right', baseSize = 40, maxSize = 64, 
   return (
     <nav
       ref={ref}
-      aria-label="Site navigation"
+      aria-label={label}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
       style={layout.axis === 'y' ? { width: panelSize } : { height: panelSize }}

@@ -1,12 +1,12 @@
 export const profile = {
-  name: 'Alejandro',
+  name: 'Uriel',
   initial: 'U',
-  role: 'Software Engineer',
-  headline: "I build software that's fast, reliable and a joy to use.",
-  focus: 'Developer tooling & distributed systems',
-  bio: 'I build reliable, fast, and delightful software. Focused on developer tooling and distributed systems. Previously at Stripe and Vercel.',
+  role: 'Ingeniero de Software',
+  headline: 'Construyo software rápido, confiable y agradable de usar.',
+  focus: 'Herramientas para desarrolladores y sistemas distribuidos',
+  bio: 'Construyo software confiable, rápido y agradable de usar. Me enfoco en herramientas para desarrolladores y sistemas distribuidos. Antes trabajé en Stripe y Vercel.',
   email: 'uriel@example.com',
-  status: 'Available for opportunities',
+  status: 'Disponible para nuevas oportunidades',
   heroImage:
-    'https://images.unsplash.com/photo-1689443111130-6e9c7dfd8f9e?w=1600&h=900&fit=crop&auto=format',
+'https://images.unsplash.com/photo-1689443111130-6e9c7dfd8f9e?w=1600&h=900&fit=crop&auto=format',
 };

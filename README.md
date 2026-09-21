@@ -33,15 +33,18 @@ El proyecto tiene tres capas:
 ```
 src/
 ├── App.tsx                 → arma la página
-├── index.css               → Tailwind + tokens de diseño (@theme)
+├── index.css               → entrada de estilos: fuentes, Tailwind y estilos base
+├── styles/
+│   └── theme.css           → 🎨 EL TEMA: colores, sombras y fuentes
 ├── types.ts                → tipos compartidos (NavItem, Experience, Project…)
 │
 ├── data/                   → TU CONTENIDO
 │   ├── profile.ts            nombre, rol, bio, email, imagen del hero
 │   ├── experiences.ts        trabajos (con métricas y stack)
-│   ├── projects.ts           proyectos (con sus dos colores)
+│   ├── projects.ts           proyectos (imagen + dos colores)
 │   ├── socials.ts            redes sociales
-│   └── navigation.ts         secciones del menú (href = "#id")
+│   ├── navigation.ts         secciones del menú (href = "#id")
+│   └── copy.ts               textos de la interfaz: títulos, botones, ids de sección
 │
 ├── sections/               → datos + componentes
 │   ├── HeroSection.tsx
@@ -144,7 +147,7 @@ Todos respetan `prefers-reduced-motion`: si el usuario pidió menos movimiento, 
 | `<Button href variant? icon? iconEnd?>` | `variant`: `'primary' \| 'ghost'`. El `href` puede ser `#seccion`, `https://…` o `mailto:…`. |
 | `<SpotlightCard href? color?>` | Tarjeta con luz que sigue al cursor. Es un `group` de Tailwind, así que los hijos pueden usar `group-hover:`. |
 | `<Avatar initial size?>` | Círculo con degradado y anillo pulsante. |
-| `<StatusPill>` | Etiqueta con punto verde ("Available…"). |
+| `<StatusPill>` | Etiqueta con punto verde ("Disponible…"). |
 | `<Stat value label>` | Número grande con `CountUp` (va dentro de un `<dl>`). |
 | `<Tag>` / `<TagList items>` | Etiquetas monoespaciadas de tecnologías. |
 | `<IconLink item>` | Botón cuadrado con ícono. |
@@ -185,7 +188,7 @@ Todos respetan `prefers-reduced-motion`: si el usuario pidió menos movimiento, 
   {/* Contenido final: cada hijo directo aparece en orden */}
   <Avatar initial="U" />
   <p data-split>Este texto aparece palabra por palabra</p>
-  <Button href="#projects">Ver trabajo</Button>
+  <Button href="#proyectos">Ver proyectos</Button>
 </ScrollHero>
 ```
 
@@ -199,7 +202,7 @@ La animación tiene tres momentos:
 
 ```tsx
 <Timeline>
-  <TimelineItem aside={<DateRange dates="2022 – Present" />}>
+  <TimelineItem aside={<DateRange dates="2022 – Actualidad" current />}>
     <ExperienceCard experience={job} />
   </TimelineItem>
 </Timeline>
@@ -214,6 +217,13 @@ La animación tiene tres momentos:
 ```
 
 `ProjectCard` y `ProjectVisual` también se pueden usar por separado.
+
+Cada proyecto muestra su **imagen** (`image` en `data/projects.ts`) con un tinte de sus dos colores (`from`, `to`) que desaparece al pasar el mouse. Si un proyecto no tiene `image`, se dibuja una ilustración abstracta con esos colores.
+
+**Para usar capturas reales de tus proyectos:**
+
+1. Guarda la imagen en `public/projects/`, por ejemplo `public/projects/plex.png`. Se recomienda formato horizontal, de unos 1200 px de ancho.
+2. En `data/projects.ts`, escribe `image: '/projects/plex.png'`.
 
 ---
 
@@ -241,11 +251,45 @@ function MiComponente() {
 
 ---
 
+## Tema
+
+Todo el diseño visual sale de **un solo archivo: `src/styles/theme.css`**. Ningún componente tiene colores fijos: todos usan los tokens del tema.
+
+| Grupo | Tokens | Se usa en |
+|---|---|---|
+| **Acento** | `accent`, `accent-dim`, `accent-soft`, `accent-2`, `accent-3` | botones, enlaces, brillos, línea de tiempo, degradados |
+| **Fondos** | `canvas`, `surface`, `surface-raised` | página, tarjetas, botones de ícono |
+| **Texto** | `ink`, `muted`, `subtle`, `faint` | del más visible al más discreto |
+| **Bordes** | `line` | bordes y separadores |
+| **Estados** | `success` | "Disponible", trabajo actual |
+| **Sombras** | `glow-sm`, `glow`, `glow-lg`, `accent-sm`, `accent`, `accent-lg`, `avatar`, `success` | se calculan a partir del acento, no hace falta tocarlas |
+| **Fuentes** | `sans`, `display`, `mono` | texto, títulos, etiquetas |
+
+Cada token se convierte en clases de Tailwind:
+
+```
+--color-accent   →  text-accent, bg-accent/20, border-accent/30, from-accent…
+--shadow-glow    →  shadow-glow
+--font-display   →  font-display
+```
+
+### Cambiar la paleta en 10 segundos
+
+Al final de `theme.css` hay paletas listas para copiar: **Esmeralda, Océano, Atardecer y Rosa**. Copia un bloque y reemplaza los 5 valores de "Color de acento". Las sombras, los brillos, la selección de texto y el anillo del avatar se ajustan solos.
+
+### Cambiar las fuentes
+
+1. Cambia `--font-sans`, `--font-display` o `--font-mono` en `theme.css`.
+2. Actualiza el `@import` de Google Fonts al inicio de `src/index.css`.
+
+> Los colores de cada proyecto (`from`, `to`) no son parte del tema: son contenido y están en `data/projects.ts`.
+
 ## Personalizar
 
-- **Contenido:** los archivos de `src/data/`.
-- **Colores y fuentes:** el bloque `@theme` en `src/index.css`. Los tokens se convierten en clases de Tailwind: `--color-accent` → `text-accent`, `bg-accent/20`, etc.
+- **Contenido:** los archivos de `src/data/`. Los textos de la interfaz (títulos de sección, botones) están en `data/copy.ts`.
+- **Colores, sombras y fuentes:** todo está en `src/styles/theme.css`. Mira la sección **Tema** más abajo.
 - **Agregar una sección:**
-  1. Crea `src/sections/MiSeccion.tsx` usando `<Section id="mi-seccion" …>`.
-  2. Agrégala en `App.tsx`.
-  3. Agrega `{ label, href: '#mi-seccion', icon }` a `src/data/navigation.ts` para que aparezca en el Dock.
+  1. Agrega sus textos a `data/copy.ts`, con un `id`, por ejemplo `'mi-seccion'`.
+  2. Crea `src/sections/MiSeccion.tsx` usando `<Section id={copy.id} …>`.
+  3. Agrégala en `App.tsx`.
+  4. Agrega `{ label, href: '#mi-seccion', icon }` a `src/data/navigation.ts` para que aparezca en el Dock.

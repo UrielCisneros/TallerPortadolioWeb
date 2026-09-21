@@ -1,19 +1,23 @@
 import { DateRange, ExperienceCard, Timeline, TimelineItem } from '@/components/experience';
 import { Section } from '@/components/ui';
+import { experienceCopy as copy } from '@/data/copy';
 import { experiences } from '@/data/experiences';
 
 export function ExperienceSection() {
   return (
     <Section
-      id="experience"
-      index="01"
-      eyebrow="Experience"
-      title={<>Where I've shipped <span className="text-white/35">real impact.</span></>}
-      description="Eight years across payments, edge infrastructure and product engineering — building systems that stay fast under pressure."
+      id={copy.id}
+      index={copy.index}
+      eyebrow={copy.eyebrow}
+      title={<>{copy.title} <span className="text-white/35">{copy.titleMuted}</span></>}
+      description={copy.description}
     >
       <Timeline>
         {experiences.map(experience => (
-          <TimelineItem key={`${experience.company}-${experience.title}`} aside={<DateRange dates={experience.dates} />}>
+          <TimelineItem
+            key={`${experience.company}-${experience.title}`}
+            aside={<DateRange dates={experience.dates} current={experience.current} />}
+          >
             <ExperienceCard experience={experience} />
           </TimelineItem>
         ))}

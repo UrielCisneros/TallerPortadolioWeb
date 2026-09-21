@@ -18,6 +18,8 @@ export interface Experience {
   title: string;
   company: string;
   dates: string;
+  /** Trabajo actual: muestra la etiqueta "Actual". */
+  current?: boolean;
   description: string;
   metrics: Metric[];
   stack: string[];
@@ -28,6 +30,9 @@ export interface Project {
   subtitle: string;
   description: string;
   tags: string[];
+  /** Captura del proyecto (URL o ruta en /public). Sin imagen se usa una ilustración abstracta. */
+  image?: string;
+  /** Colores del proyecto: tiñen la imagen y la ilustración. */
   from: string;
   to: string;
   href?: string;

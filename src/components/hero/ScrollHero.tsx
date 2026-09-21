@@ -111,7 +111,7 @@ export function ScrollHero({ id, title, image, corners, scrollLength = 250, cont
         />
         <div data-hero="shade" className="absolute inset-0">
           <div className="absolute inset-0 bg-linear-to-b from-canvas/50 via-canvas/40 to-canvas" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.18)_0%,transparent_65%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--color-accent)_18%,transparent)_0%,transparent_65%)]" />
         </div>
       </div>
 

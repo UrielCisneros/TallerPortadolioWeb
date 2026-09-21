@@ -4,7 +4,7 @@ import { linkProps } from '@/lib/links';
 
 const VARIANTS = {
   primary:
-    'bg-linear-to-br from-accent to-indigo-500 text-white shadow-[0_4px_24px_rgba(139,92,246,0.5)] hover:-translate-y-0.5 hover:shadow-[0_10px_36px_rgba(139,92,246,0.65)]',
+    'bg-linear-to-br from-accent to-accent-2 text-white shadow-accent hover:-translate-y-0.5 hover:shadow-accent-lg',
   ghost: 'border border-white/15 bg-white/5 text-white/80 backdrop-blur-md hover:border-white/30 hover:text-white',
 };
 

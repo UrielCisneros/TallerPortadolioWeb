@@ -42,7 +42,7 @@ export function DockItem({ item, size, position, active }: DockItemProps) {
       {/* Active-section indicator, like the macOS "running app" dot */}
       <span
         className={cn(
-          'absolute h-1 w-1 rounded-full bg-accent shadow-[0_0_8px_2px_rgba(139,92,246,0.7)] transition-opacity duration-300',
+          'absolute h-1 w-1 rounded-full bg-accent shadow-glow-sm transition-opacity duration-300',
           layout.dot,
           active ? 'opacity-100' : 'opacity-0',
         )}
