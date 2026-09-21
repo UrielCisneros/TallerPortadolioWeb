@@ -1,0 +1,10 @@
+{
+  "description": "Showcase your skills and projects with a sleek, mobile-responsive portfolio designed for software engineers, featuring clean layouts and easy navigation.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
