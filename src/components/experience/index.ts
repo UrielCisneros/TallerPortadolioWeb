@@ -1,3 +1,4 @@
+/** Línea de tiempo y tarjetas de experiencia. */
 export { DateRange } from './DateRange';
 export { ExperienceCard } from './ExperienceCard';
 export { Timeline } from './Timeline';

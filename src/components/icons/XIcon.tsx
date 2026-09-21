@@ -1,3 +1,4 @@
+/** Ícono: logo de X / Twitter. `size` en px; el color sale de `currentColor`. */
 export function XIcon({ size = 18 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
