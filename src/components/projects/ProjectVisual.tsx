@@ -1,4 +1,6 @@
 import type { CSSProperties } from 'react';
+import { Parallax } from '@/components/motion/Parallax';
+import { cn } from '@/lib/cn';
 import type { Project } from '@/types';
 
 const GRID: CSSProperties = {
@@ -17,10 +19,13 @@ interface ProjectVisualProps {
   featured?: boolean;
 }
 
-/** Abstract "app window" composed from the project's two brand colors. */
+/**
+ * Abstract "app window" built from the project's two colors.
+ * Reacts to the hover of a parent `group` (e.g. <SpotlightCard>).
+ */
 export function ProjectVisual({ project, index, featured }: ProjectVisualProps) {
   return (
-    <div className={`relative overflow-hidden bg-[#0a0a0c] ${featured ? 'h-60 md:h-full md:min-h-[360px]' : 'h-52'}`}>
+    <div className={cn('relative overflow-hidden bg-[#0a0a0c]', featured ? 'h-60 md:h-full md:min-h-[360px]' : 'h-52')}>
       {/* Color orbs */}
       <div
         className="absolute -left-12 -top-16 h-60 w-60 rounded-full opacity-50 blur-3xl transition-transform duration-700 group-hover:scale-125"
@@ -36,10 +41,13 @@ export function ProjectVisual({ project, index, featured }: ProjectVisualProps) 
         {String(index + 1).padStart(2, '0')}
       </span>
 
-      {/* Floating window — outer div is moved by GSAP parallax, inner by hover */}
-      <div data-parallax className="absolute inset-0 flex items-center justify-center">
+      {/* Floating window — Parallax moves the wrapper, hover moves the window */}
+      <Parallax speed={0.3} className="absolute inset-0 flex items-center justify-center">
         <div
-          className={`rounded-xl border border-white/15 bg-black/40 p-4 shadow-2xl shadow-black/50 backdrop-blur-md transition-all duration-500 group-hover:-translate-y-2 group-hover:-rotate-2 ${featured ? 'w-[68%]' : 'w-[74%]'}`}
+          className={cn(
+            'rounded-xl border border-white/15 bg-black/40 p-4 shadow-2xl shadow-black/50 backdrop-blur-md transition-all duration-500 group-hover:-translate-y-2 group-hover:-rotate-2',
+            featured ? 'w-[68%]' : 'w-[74%]',
+          )}
         >
           <div className="mb-4 flex items-center gap-1.5">
             <span className="h-2 w-2 rounded-full bg-white/25" />
@@ -60,7 +68,7 @@ export function ProjectVisual({ project, index, featured }: ProjectVisualProps) 
             ))}
           </div>
         </div>
-      </div>
+      </Parallax>
 
       {!featured && <div className="absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-surface to-transparent" />}
     </div>

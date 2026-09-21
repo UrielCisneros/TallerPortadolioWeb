@@ -1,5 +1,5 @@
 export const profile = {
-  name: 'Uriel',
+  name: 'Alejandro',
   initial: 'U',
   role: 'Software Engineer',
   headline: "I build software that's fast, reliable and a joy to use.",

@@ -2,7 +2,8 @@ import { useRef } from 'react';
 import { useMotion } from '@/hooks/useMotion';
 import { gsap } from '@/lib/gsap';
 
-export function ScrollIndicator() {
+/** Little mouse icon with a looping wheel, plus an optional label. */
+export function ScrollIndicator({ label = 'Scroll' }: { label?: string }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useMotion(() => {
@@ -11,8 +12,8 @@ export function ScrollIndicator() {
 
   return (
     <div ref={ref} className="flex items-center gap-3">
-      <span>Scroll to explore</span>
-      <svg width="16" height="24" viewBox="0 0 16 24" fill="none">
+      {label && <span>{label}</span>}
+      <svg width="16" height="24" viewBox="0 0 16 24" fill="none" aria-hidden="true">
         <rect x="1" y="1" width="14" height="22" rx="7" stroke="currentColor" strokeWidth="1.5" />
         <circle cx="8" cy="7" r="2.5" fill="currentColor" />
       </svg>

@@ -1,5 +1,14 @@
 import type { ComponentType } from 'react';
 
+export type IconComponent = ComponentType<{ size?: number }>;
+
+/** A link with an icon — used by the dock, social links and navigation. */
+export interface NavItem {
+  label: string;
+  href: string;
+  icon: IconComponent;
+}
+
 export interface Metric {
   value: string;
   label: string;
@@ -22,10 +31,4 @@ export interface Project {
   from: string;
   to: string;
   href?: string;
-}
-
-export interface Social {
-  label: string;
-  href: string;
-  icon: ComponentType<{ size?: number }>;
 }
