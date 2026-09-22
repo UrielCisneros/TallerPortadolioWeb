@@ -14,6 +14,8 @@ interface ScrollHeroProps {
   corners?: ReactNode;
   /** Cuánto tiempo se queda fijado, en % de la altura de la pantalla. Default: 250 (= 2.5 pantallas). */
   scrollLength?: number;
+  /** Animación de entrada al cargar la página. Ponlo en false si un loader ya hace la entrada. Default: true. */
+  intro?: boolean;
   /** Clases extra para la columna que contiene el contenido final. */
   contentClassName?: string;
   /**
@@ -49,7 +51,7 @@ const startFrame = () =>
  * Detalle de accesibilidad: el HTML "de fábrica" ya es el cuadro final. Si el usuario
  * pidió reducir movimiento, useMotion no ejecuta nada y ve directamente el resultado.
  */
-export function ScrollHero({ id, title, image, corners, scrollLength = 250, contentClassName, children }: ScrollHeroProps) {
+export function ScrollHero({ id, title, image, corners, scrollLength = 250, intro = true, contentClassName, children }: ScrollHeroProps) {
   // La sección completa: es lo que se fija y el disparador del ScrollTrigger
   const sectionRef = useRef<HTMLElement>(null);
   // La columna del contenido final: necesitamos recorrer sus hijos
@@ -155,8 +157,9 @@ export function ScrollHero({ id, title, image, corners, scrollLength = 250, cont
     // ─────────────────────────────────────────────────────────────
     // ANIMACIÓN DE ENTRADA (al cargar la página, independiente del scroll)
     // Solo si estamos arriba: si el navegador restauró el scroll a media página, no tiene sentido.
+    // Con intro={false} se omite: la página ya aparece con el cuadro inicial listo.
     // ─────────────────────────────────────────────────────────────
-    if (window.scrollY < 10) {
+    if (intro && window.scrollY < 10) {
       gsap.timeline({ defaults: { ease: 'power4.out' } })
         // La ventana se abre desde un punto en el centro (inset 50 % por todos lados = tamaño 0)
         .from('[data-hero="window"]', { clipPath: 'inset(50% 50% 50% 50% round 28px)', duration: 1.4, ease: 'expo.inOut' })

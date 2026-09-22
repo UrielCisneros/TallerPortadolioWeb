@@ -7,6 +7,10 @@ export const heroCopy = {
   workLabel: 'Ver proyectos',
 };
 
+export const loaderCopy = {
+  title: 'Cargando',
+};
+
 export const experienceCopy = {
   id: 'experiencia',
   index: '01',

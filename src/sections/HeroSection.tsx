@@ -35,7 +35,7 @@ export function HeroSection() {
   );
 
   return (
-    <ScrollHero id={HOME_ID} title={profile.name} image={profile.heroImage} corners={corners}>
+    <ScrollHero id={HOME_ID} title={profile.name} image={profile.heroImage} corners={corners} intro={false}>
       <Avatar initial={profile.initial} className="mb-7" />
       <StatusPill>{profile.status}</StatusPill>
 
